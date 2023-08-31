@@ -1,0 +1,26 @@
+{
+  "name": "@galaxus/zx",
+  "version": "1.0.0",
+  "description": "A leightweight version of zx - a tool for writing better scripts",
+  "main": "dist/index.mjs",
+  "types": "dist/globals.d.ts",
+  "type": "module",
+  "bin": {
+    "zx": "dist/index.mjs"
+  },
+  "keywords": [],
+  "author": "Jan Nicklas",
+  "license": "Apache-2.0",
+  "scripts": {
+    "build": "zx pack.mjs"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.36.1",
+    "copyfiles": "2.4.1",
+    "zx": "^7.2.3",
+    "@types/node": "16"
+  },
+  "files": [
+    "dist"
+  ]
+}
