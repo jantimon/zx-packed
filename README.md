@@ -6,6 +6,10 @@ It is 20x smaller (node_modules 13 MB -> 500kb) with 0 Dependencies.
 > npm package size:  124.1 kB                                
 > npm unpacked size: 466.7 kB 
 
+```bash
+npm i -g zx-packed
+```
+
 ```js
 #!/usr/bin/env zx
 
@@ -23,6 +27,10 @@ await Promise.all([
 let name = 'foo bar'
 await $`mkdir /tmp/${name}`
 ```
+
+## API  
+
+For usage please use [🐚 google/zx](https://github.com/google/zx#goods)
 
 ## Typescript 
 
