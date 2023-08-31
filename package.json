@@ -12,7 +12,7 @@
   "author": "Jan Nicklas",
   "license": "Apache-2.0",
   "scripts": {
-    "build": "zx pack.mjs"
+    "build": "npx zx-packed pack.mjs"
   },
   "devDependencies": {
     "@types/node": "16",
