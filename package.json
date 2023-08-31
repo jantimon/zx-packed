@@ -1,6 +1,6 @@
 {
   "name": "zx-packed",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "A leightweight version of zx - a tool for writing better scripts",
   "main": "dist/index.mjs",
   "types": "dist/globals.d.ts",
@@ -17,7 +17,6 @@
   "devDependencies": {
     "@types/node": "16",
     "@vercel/ncc": "^0.36.1",
-    "copyfiles": "2.4.1",
     "zx": "^7.2.3"
   },
   "files": [
