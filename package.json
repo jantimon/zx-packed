@@ -1,12 +1,12 @@
 {
   "name": "zx-packed",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A leightweight version of zx - a tool for writing better scripts",
   "main": "dist/index.mjs",
   "types": "dist/globals.d.ts",
   "type": "module",
   "bin": {
-    "zx": "dist/index.mjs"
+    "zx": "dist/cli.mjs"
   },
   "keywords": [],
   "author": "Jan Nicklas",
@@ -15,10 +15,10 @@
     "build": "zx pack.mjs"
   },
   "devDependencies": {
+    "@types/node": "16",
     "@vercel/ncc": "^0.36.1",
     "copyfiles": "2.4.1",
-    "zx": "^7.2.3",
-    "@types/node": "16"
+    "zx": "^7.2.3"
   },
   "files": [
     "dist"
