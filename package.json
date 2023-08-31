@@ -1,6 +1,6 @@
 {
   "name": "zx-packed",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A leightweight version of zx - a tool for writing better scripts",
   "main": "dist/index.mjs",
   "types": "dist/globals.d.ts",

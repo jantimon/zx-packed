@@ -12,13 +12,21 @@ const indexFiles = await glob(["dist/index.mjs", "dist/*.index.mjs"]);
 indexFiles.forEach(async (file) => {
   // replace string import:
   // https://github.com/google/zx/blob/956dcc3bbdd349ac4c41f8db51add4efa2f58456/src/cli.ts#L58-L59
-  // await __webpack_require__(9879)(globals);
-  // -> await import('./globals.mjs');
+
   writeFileSync(
     file,
-    readFileSync(file, "utf8").replace(
-      /__webpack_require__\(\d+\)\(globals\)/g,
-      "import('./globals.mjs')"
-    )
+    readFileSync(file, "utf8")
+      // await __webpack_require__(9879)(globals);
+      // -> await import('./globals.mjs');
+      .replace(
+        /__webpack_require__\(\d+\)\(globals\)/g,
+        "import('./globals.mjs')"
+      )
+      // await __webpack_require__(9879)(node_url__WEBPACK_IMPORTED_MODULE_3__.pathToFileURL(filepath).toString());
+      // -> await import(node_url__WEBPACK_IMPORTED_MODULE_3__.pathToFileURL(filepath).toString());
+      .replace(
+        /__webpack_require__\(\d+\)\(([^\)]+)\.pathToFileURL\(filepath\)\.toString\(\)\)/g,
+        "import($1.pathToFileURL(filepath).toString())"
+      )
   );
 });
