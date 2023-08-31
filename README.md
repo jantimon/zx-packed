@@ -1,7 +1,7 @@
-# ZX (light)
+# ZX (packed)
 
-A lightweight version of [🐚 zx](https://github.com/google/zx).
-It is 20x smaller (13 MB -> 500kb) with 0 Dependencies.
+A lightweight version of [🐚 google/zx](https://github.com/google/zx).
+It is 20x smaller (node_modules 13 MB -> 500kb) with 0 Dependencies.
 
 ```js
 #!/usr/bin/env zx
