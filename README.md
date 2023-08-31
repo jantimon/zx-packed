@@ -3,6 +3,9 @@
 A lightweight version of [🐚 google/zx](https://github.com/google/zx).
 It is 20x smaller (node_modules 13 MB -> 500kb) with 0 Dependencies.
 
+> npm package size:  124.1 kB                                
+> npm unpacked size: 466.7 kB 
+
 ```js
 #!/usr/bin/env zx
 
