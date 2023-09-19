@@ -3,30 +3,23 @@ import "zx";
 import { readFileSync, writeFileSync } from "fs";
 
 await $`rm -rf dist`;
-await $`ncc build --target es2020 -e "./globals.js" --minify src/index.mjs`;
+await $`esbuild src/index.mjs --bundle --platform=node --target=node18 --format=cjs --outfile=dist/index.cjs`;
+
 await $`cp node_modules/zx/build/*.d.ts dist/`;
-await $`cp src/globals.mjs dist/`;
+await $`cp src/globals.js dist/`;
 await $`cp src/cli.mjs dist/`;
 
-const indexFiles = await glob(["dist/index.mjs", "dist/*.index.mjs"]);
-indexFiles.forEach(async (file) => {
-  // replace string import:
-  // https://github.com/google/zx/blob/956dcc3bbdd349ac4c41f8db51add4efa2f58456/src/cli.ts#L58-L59
+const cjsAssets = await glob(["dist/*.cjs"]);
+for (const file of cjsAssets) {
+  console.log("Patch file:", file);
 
+  // esbuild does not support import.meta.url
+  // @see https://github.com/evanw/esbuild/issues/1492
   writeFileSync(
     file,
     readFileSync(file, "utf8")
-      // await __webpack_require__(9879)(globals);
-      // -> await import('./globals.mjs');
-      .replace(
-        /__webpack_require__\(\d+\)\(globals\)/g,
-        "import('./globals.mjs')"
-      )
-      // await __webpack_require__(9879)(node_url__WEBPACK_IMPORTED_MODULE_3__.pathToFileURL(filepath).toString());
-      // -> await import(node_url__WEBPACK_IMPORTED_MODULE_3__.pathToFileURL(filepath).toString());
-      .replace(
-        /__webpack_require__\(\d+\)\(([^\)]+)\.pathToFileURL\(filepath\)\.toString\(\)\)/g,
-        "import($1.pathToFileURL(filepath).toString())"
-      )
+      .replace(/import_meta\.url/g, '__filename')
   );
-});
+
+  await $`esbuild --minify ${file} --outfile=${file} --allow-overwrite`
+}

@@ -1,3 +1,3 @@
 #!/usr/bin/env node
-import { cli } from './index.mjs';
-await cli();
+import { runZX } from "./index.cjs";
+await runZX();

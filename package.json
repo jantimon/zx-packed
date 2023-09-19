@@ -1,23 +1,43 @@
 {
   "name": "zx-packed",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "A leightweight version of zx - a tool for writing better scripts",
-  "main": "dist/index.mjs",
-  "types": "dist/globals.d.ts",
+  "main": "dist/index.cjs",
+  "types": "dist/index.d.ts",
   "type": "module",
   "bin": {
     "zx": "dist/cli.mjs"
+  },
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./dist/index.d.ts"
+      ],
+      "globals": [
+        "./dist/globals.d.ts"
+      ],
+      "cli": [
+        "./build/cli.d.ts"
+      ]
+    }
+  },
+  "exports": {
+    ".": "./dist/index.cjs",
+    "./globals": "./dist/globals.js"
   },
   "keywords": [],
   "author": "Jan Nicklas",
   "license": "Apache-2.0",
   "scripts": {
-    "build": "npx zx-packed pack.mjs"
+    "build": "npx zx-packed pack.mjs",
+    "postinstall": "patch-package"
   },
+  "dependencies": {},
   "devDependencies": {
     "@types/node": "16",
-    "@vercel/ncc": "^0.36.1",
-    "zx": "^7.2.3"
+    "zx": "^7.2.3",
+    "esbuild": "0.19.3",
+    "patch-package": "8.0.0"
   },
   "files": [
     "dist"
